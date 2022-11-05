@@ -18,23 +18,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringBootRuiJiApplicationTests {
 
-    @Autowired
-    private EmployeeService employeeService;
 
     @Test
     void contextLoads() {
+
     }
 
-    @Test
-    void selectOneBy(){
-        QueryWrapper<Employee> qw = new QueryWrapper<>();
-        qw.eq("username","admin");
-        Employee one = employeeService.getOne(qw);
-        System.out.println(one);
-    }
 
-    @Test
-    void send(){
-        SendMessageUtil.send("21","123456","13033480262");
-    }
+
 }
