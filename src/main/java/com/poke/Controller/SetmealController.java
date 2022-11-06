@@ -15,6 +15,8 @@ import com.poke.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class SetmealController {
     }
 
     @PostMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> save(@RequestBody SetmealDto setmealDto){
         log.info("保存的套餐为={}",setmealDto);
 
@@ -65,6 +68,7 @@ public class SetmealController {
     }
 
     @PutMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> update(@RequestBody SetmealDto setmealDto){
         log.info("需要更新的信息为+{}",setmealDto);
         setmealService.UpdateWithSetmeal(setmealDto);
@@ -88,6 +92,7 @@ public class SetmealController {
     }
 //    http://localhost:8080/setmeal?ids=1588447036640927746
     @DeleteMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> delete(@RequestParam List<Long> ids){
         log.info("删除信息为={}",ids);
         setmealService.removeWithDish(ids);
@@ -96,7 +101,9 @@ public class SetmealController {
 
 //    http://localhost:8080/setmeal/list?categoryId=1413342269393674242&status=1  前端查询套餐页面
     @GetMapping("/list")
+    @Cacheable(value = "setmealCache",key = "#setmeal.categoryId + '_' + #setmeal.status")
     public R<List<Setmeal>> getList(Setmeal setmeal){
+        log.info("setaml={}",setmeal);
         LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(setmeal.getCategoryId()!=null,Setmeal::getCategoryId,setmeal.getCategoryId())
                 .eq(setmeal.getStatus()!=null,Setmeal::getStatus,setmeal.getStatus())
