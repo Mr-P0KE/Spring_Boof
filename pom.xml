@@ -78,6 +78,10 @@
             <version>1.2.14</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
 <!--        # 版本在maven生效需要时间，如获取不到对应的版本，可以调低版本号-->
         <dependency>
