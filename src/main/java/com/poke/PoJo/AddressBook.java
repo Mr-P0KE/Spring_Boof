@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 地址管理
@@ -13,6 +15,7 @@ import lombok.Data;
  */
 @TableName(value ="address_book")
 @Data
+
 public class AddressBook implements Serializable {
     /**
      * 主键

@@ -1,6 +1,7 @@
 package com.poke;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.poke.Controller.SetmealController;
 import com.poke.PoJo.Employee;
 import com.poke.Util.SendMessageUtil;
 import com.poke.service.EmployeeService;
@@ -17,11 +18,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SpringBootRuiJiApplicationTests {
-
-
+    @Autowired
+    private SetmealController setmealController1;
+    @Autowired
+    private SetmealController setmealController2;
+    //    @Autowired
+//    private UserMapper userMapper1;
     @Test
-    void contextLoads() {
-
+    public void get(){
+        System.out.println(setmealController1);
+        System.out.println(setmealController2);
     }
 
 

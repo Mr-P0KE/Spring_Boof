@@ -34,7 +34,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userInterceptor)
+                //资源配置，什么资源需要被拦截
                 .addPathPatterns("/**")
+                //什么资源不需要拦截
                 .excludePathPatterns("/employee/login","/employee/logout","/backend/**","/front/**","/user/sendMsg","/user/login");
     }
 

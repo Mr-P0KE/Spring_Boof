@@ -38,6 +38,7 @@ public class UserController {
         if(!StringUtils.isEmpty(phone)){
             String s = ValidateCodeUtils.generateValidateCode(4).toString();
             log.info("手机验证码为={}",s);
+//            SendMessageUtil.send("123",s,phone);
             redisTemplate.opsForValue().set(phone,s,30, TimeUnit.MINUTES);
             return R.success("发送成功");
         }
